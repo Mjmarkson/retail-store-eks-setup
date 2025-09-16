@@ -34,10 +34,12 @@ resource "helm_release" "istiod" {
   namespace  = kubernetes_namespace_v1.istio[0].metadata[0].name
   wait       = true
 
-  set {
-    name  = "defaultRevision"
-    value = "default"
-  }
+  set = [
+    {
+      name  = "defaultRevision"
+      value = "default"
+    }
+  ]
 }
 
 resource "kubernetes_namespace_v1" "istio_ingress" {
